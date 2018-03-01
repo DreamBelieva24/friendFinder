@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Friend Finder</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous">
+    <style>
+        .modal {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
+                    <div class="panel-title">
+                        <h1>&nbsp;Survey Questions</h1>
+                    </div>
+                    <div class="panel-body">
+                        <form role="form">
+                            <div class="form-group">
+                                <label for>Name (required)</label>
+                                <input type="text" class="form-control" id="name">
+                            </div>
+                            <div class="form-group">
+                                <label for>Link to Photo (required)</label>
+                                <input type="text" class="form-control" id="photo">
+                            </div>
+
+                            <label for>Question 1</label>
+                            <select class="form-control" id="q1">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 2</label>
+                            <select class="form-control" id="q2">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 3</label>
+                            <select class="form-control" id="q3">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 4</label>
+                            <select class="form-control" id="q4">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 5</label>
+                            <select class="form-control" id="q5">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 6</label>
+                            <select class="form-control" id="q6">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 7</label>
+                            <select class="form-control" id="q7">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 8</label>
+                            <select class="form-control" id="q8">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 9</label>
+                            <select class="form-control" id="q9">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <br>
+                            <label for>Question 10</label>
+                            <select class="form-control" id="q10">
+                                <option>1 (Strongly Disagree)</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5 (Strongly Agree)</option>
+                            </select>
+                            <hr>
+
+
+                            <button type="submit" class="btn btn-primary submit">
+                                Find my match!
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer class="footer">
+        <a href="/api/friends">API Friends List
+        </a>
+    </footer>
+    <div class="modal">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">x
+
+            </button>
+            <h1>Best Match</h1>
+        </div>
+        <div class="modal-body">
+            <h2 id="match-name"></h2>
+            <div id="match-photo"></div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close
+
+            </button>
+        </div>
+    </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    <script type="text/javascript">
+
+        function runTableQuery() {
+            var currentURL = window.location.origin;
+
+            $.ajax({ 
+                url: currentURL + "api/friends", 
+                method: "GET" 
+                }).done(function(res) {
+        
+                    console.log("\nURL: " + currentURL + "/api/friends");
+                    console.log("\n" + res);   
+
+                });
+        }
+        runTableQuery();
+
+        $(".submit").on("click", function () {
+            event.preventDefault();
+            var newFriend = {
+                name: $("#name").val().trim(),
+                photo: $("#photo").val().trim(),
+                scores: [
+                    parseInt($("#q1").val().trim()),
+                    parseInt($("#q2").val().trim()),
+                    parseInt($("#q3").val().trim()),
+                    parseInt($("#q4").val().trim()),
+                    parseInt($("#q5").val().trim()),
+                    parseInt($("#q6").val().trim()),
+                    parseInt($("#q7").val().trim()),
+                    parseInt($("#q8").val().trim()),
+                    parseInt($("#q9").val().trim()),
+                    parseInt($("#q10").val().trim())
+                ]
+            }
+            console.log(newFriend);
+
+            var currentURL = window.location.origin;
+
+            $.post("/api/friends", newFriend, function (data) {
+
+            })
+            var newScore = 0;
+            
+            // Loop through API (i) and compare newFriend.scores[k] to response.scores[j]
+            // newArray.push(abs(response.scores[j] - newFriendscores[k]))
+            
+            // Take scores from newArray and add them up
+            
+            
+            for (i = 0; i < newFriend.scores.length; i++) {
+                newScore += newFriend.scores[i]
+            };
+            console.log(newScore)
+            
+            // Make variable of the choice with least difference
+            // Display match
+
+
+            $("#match-name").text("match.name");
+            // $("#match-photo").attr("src", match.photo);
+            $(".modal").modal("toggle");
+
+          
+          
+
+        })
+
+    </script>
+</body>
+
+</html>
