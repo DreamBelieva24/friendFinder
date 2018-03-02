@@ -175,12 +175,12 @@
             var currentURL = window.location.origin;
 
             $.ajax({ 
-                url: currentURL + "api/friends", 
+                url: currentURL + "/api/friends", 
                 method: "GET" 
                 }).done(function(res) {
         
                     console.log("\nURL: " + currentURL + "/api/friends");
-                    console.log("\n" + res);   
+                      
 
                 });
         }
@@ -207,23 +207,36 @@
             console.log(newFriend);
 
             var currentURL = window.location.origin;
+        
+            $.ajax({ 
+                url: currentURL + "/api/friends", 
+                method: "GET" 
+                }).done(function(res) {
+        
+                    console.log("\nURL: " + currentURL + "/api/friends");  
+                    
+            for (i = 0; i < res.length; i++) {
+    
+                console.log(res[i].scores)
+                
+                var totalMatchScore = 0;
+                for (j = 0; j < res[i].scores.length; j++) {
+                    console.log(newFriend.scores)
+                
+                var compare = Math.abs(parseInt(res[i].scores[j]) - parseInt(newFriend.scores))
+                
+                totalMatchScore += compare
+                 
+                  }
+                  
+            }
+            console.log(totalMatchScore)
+            
+        });
+        $.post("/api/friends", newFriend, function (data) {
 
-            $.post("/api/friends", newFriend, function (data) {
+})
 
-            })
-            var newScore = 0;
-            
-            // Loop through API (i) and compare newFriend.scores[k] to response.scores[j]
-            // newArray.push(abs(response.scores[j] - newFriendscores[k]))
-            
-            // Take scores from newArray and add them up
-            
-            
-            for (i = 0; i < newFriend.scores.length; i++) {
-                newScore += newFriend.scores[i]
-            };
-            console.log(newScore)
-            
             // Make variable of the choice with least difference
             // Display match
 
