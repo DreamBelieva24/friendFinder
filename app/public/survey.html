@@ -152,13 +152,13 @@
         <div class="modal-body">
             <h2 id="match-name"></h2>
             <img id="match-photo">
-        
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Close
 
-            </button>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close
+
+                </button>
+            </div>
         </div>
-    </div>
     </div>
 
     <!-- Optional JavaScript -->
@@ -174,15 +174,15 @@
         function runTableQuery() {
             var currentURL = window.location.origin;
 
-            $.ajax({ 
-                url: currentURL + "/api/friends", 
-                method: "GET" 
-                }).done(function(res) {
-        
-                    console.log("\nURL: " + currentURL + "/api/friends");
-                      
+            $.ajax({
+                url: currentURL + "/api/friends",
+                method: "GET"
+            }).done(function (res) {
 
-                });
+                console.log("\nURL: " + currentURL + "/api/friends");
+
+
+            });
         }
         runTableQuery();
 
@@ -204,63 +204,69 @@
                     parseInt($("#q10").val().trim())
                 ]
             }
-            
+
 
             var currentURL = window.location.origin;
-        
-            $.ajax({ 
-                url: currentURL + "/api/friends", 
-                method: "GET" 
-                }).done(function(res) {
-        
-                    console.log("\nURL: " + currentURL + "/api/friends");  
-                    var scoreArray = []
-            for (i = 0; i < res.length; i++) {
-    
-                console.log(res[i].scores)
-                
-                var totalMatchScore = 0;
-                for (j = 0; j < res[i].scores.length; j++) {
-                
-                var compare = Math.abs(parseInt(res[i].scores[j]) - parseInt(newFriend.scores))
-                
-                totalMatchScore += compare
+
+            $.ajax({
+                url: currentURL + "/api/friends",
+                method: "GET"
+            }).done(function (res) {
+
+                console.log("\nURL: " + currentURL + "/api/friends");
+                var scoreArray = []
+                for (i = 0; i < res.length; i++) {
 
                 
 
-               
-                 
-                  }
-                  scoreArray.push(totalMatchScore)
-                  
-                  if (scoreArray[i] > scoreArray[i-1]){
-                    $("#match-name").html(res[i].name);
-                    $("#match-photo").attr("src", res[i].photo);
-                  }
-                  else {
-                    $("#match-name").html(res[i].name);
-                    $("#match-photo").attr("src", res[i].photo);
-                  }
-                  
-            }
-            console.log(scoreArray) 
+                    var totalMatchScore = 0;
+                    for (j = 0; j < res[i].scores.length; j++) {
 
-            
-        });
-        $.post("/api/friends", newFriend, function (data) {
+                        var compare = Math.abs(parseInt(res[i].scores[j]) - parseInt(newFriend.scores))
 
-})
+                        totalMatchScore += compare
+
+                        var bestMatch = {
+                            name: "",
+                            photo: "",
+                            friendDifference: 1000
+                        }
+
+                        if (totalMatchScore <= bestMatch.friendDifference) {
+
+                            bestMatch.name = res[i].name
+                            bestMatch.photo = res[i].photo
+                            bestMatch.friendDifference = totalMatchScore
+
+                            $("#match-name").html(res[i].name);
+                            $("#match-photo").attr("src", res[i].photo);
+                        }
+
+                    }
+                    scoreArray.push(totalMatchScore)
+
+
+
+
+                }
+                console.log(scoreArray)
+
+
+            });
+            $.post("/api/friends", newFriend, function (data) {
+
+            })
 
             // Make variable of the choice with least difference
             // Display match
 
 
-            
+
             // $("#match-photo").attr("src", match.photo);
             $(".modal").modal("toggle");
 
-          
-          
+
+
 
         })
 

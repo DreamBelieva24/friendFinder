@@ -1,7 +1,7 @@
 var friendList = [
     {
-    name: "Ahmed",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    name: "Pee Wee Herman",
+    photo: "https://news.sagacom.com/wp-content/blogs.dir/3/files/2013/11/peewee.jpg",
     scores: [
         5,
         1,
@@ -29,6 +29,23 @@ var friendList = [
         1,
         3,
         2,
+        1
+      ]
+  }
+,
+  {
+    name: "Gaston",
+    photo: "https://cdn-images-1.medium.com/max/1440/1*6DTL71Bgx8x6HUpFrDEa1Q.jpeg",
+    scores: [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
         1
       ]
   }
