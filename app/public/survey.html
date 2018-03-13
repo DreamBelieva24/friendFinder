@@ -36,7 +36,7 @@
                                 <input type="text" class="form-control" id="photo">
                             </div>
 
-                            <label for>Question 1</label>
+                            <label for>I like cheese.</label>
                             <select class="form-control" id="q1">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -45,7 +45,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 2</label>
+                            <label for>My mom is my best friend.</label>
                             <select class="form-control" id="q2">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -54,7 +54,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 3</label>
+                            <label for>I would choose donuts over cookies.</label>
                             <select class="form-control" id="q3">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -63,7 +63,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 4</label>
+                            <label for>I am a cat person.</label>
                             <select class="form-control" id="q4">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -72,7 +72,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 5</label>
+                            <label for>I never wear matching socks.</label>
                             <select class="form-control" id="q5">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -81,7 +81,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 6</label>
+                            <label for>I have daddy-issues.</label>
                             <select class="form-control" id="q6">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -90,7 +90,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 7</label>
+                            <label for>I put salt on everything.</label>
                             <select class="form-control" id="q7">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -99,7 +99,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 8</label>
+                            <label for>I could never be a vegetarian.</label>
                             <select class="form-control" id="q8">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -108,7 +108,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 9</label>
+                            <label for>Team Aniston for life!</label>
                             <select class="form-control" id="q9">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -117,7 +117,7 @@
                                 <option>5 (Strongly Agree)</option>
                             </select>
                             <br>
-                            <label for>Question 10</label>
+                            <label for>I like me some me.</label>
                             <select class="form-control" id="q10">
                                 <option>1 (Strongly Disagree)</option>
                                 <option>2</option>
@@ -151,8 +151,8 @@
         </div>
         <div class="modal-body">
             <h2 id="match-name"></h2>
-            <div id="match-photo"></div>
-        </div>
+            <img id="match-photo">
+        
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close
 
@@ -204,7 +204,7 @@
                     parseInt($("#q10").val().trim())
                 ]
             }
-            console.log(newFriend);
+            
 
             var currentURL = window.location.origin;
         
@@ -214,23 +214,37 @@
                 }).done(function(res) {
         
                     console.log("\nURL: " + currentURL + "/api/friends");  
-                    
+                    var scoreArray = []
             for (i = 0; i < res.length; i++) {
     
                 console.log(res[i].scores)
                 
                 var totalMatchScore = 0;
                 for (j = 0; j < res[i].scores.length; j++) {
-                    console.log(newFriend.scores)
                 
                 var compare = Math.abs(parseInt(res[i].scores[j]) - parseInt(newFriend.scores))
                 
                 totalMatchScore += compare
+
+                
+
+               
                  
+                  }
+                  scoreArray.push(totalMatchScore)
+                  
+                  if (scoreArray[i] > scoreArray[i-1]){
+                    $("#match-name").html(res[i].name);
+                    $("#match-photo").attr("src", res[i].photo);
+                  }
+                  else {
+                    $("#match-name").html(res[i].name);
+                    $("#match-photo").attr("src", res[i].photo);
                   }
                   
             }
-            console.log(totalMatchScore)
+            console.log(scoreArray) 
+
             
         });
         $.post("/api/friends", newFriend, function (data) {
@@ -241,7 +255,7 @@
             // Display match
 
 
-            $("#match-name").text("match.name");
+            
             // $("#match-photo").attr("src", match.photo);
             $(".modal").modal("toggle");
 

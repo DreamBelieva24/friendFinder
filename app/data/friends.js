@@ -18,7 +18,7 @@ var friendList = [
 
   {
     name: "Jennifer",
-    photo: "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    photo: "https://www.caaspeakers.com/wp-content/uploads/sites/3/2017/05/LawrenceJ_headshot_web-330x360.jpg",
     scores: [
         4,
         1,
